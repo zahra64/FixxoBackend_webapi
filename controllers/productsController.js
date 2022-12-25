@@ -87,7 +87,7 @@ controller.route('/product/details/:articleNumber').get(async (req, res) => {
 
 
 // secured routes
-controller.route('/').post(async (reg, res) => {
+controller.route('/').post(async (req, res) => {
 const { name, description, price, category, tag, imageName, rating } = req.body
 
     if (!name || !price)

@@ -128,5 +128,35 @@ controller.route ('/:articleNumber').delete(async (req, res) => {
 })
 
 
+//update  
+controller.route ('/:articleNumber').put(async (req, res) => {
+    if(!req.params.articleNumber)
+        res.status(400).json('no article number was specificed')
+    else {
+       
+        const product = await productSchema.findByIdAndUpdate( req.params.articleNumber, req.body, {new: true})
+        if (product) {
+            
+            res.status(200).json({
+            articleNumber: product._id,
+            name: product.name,
+            description : product.description,
+            price: product.price,
+            category: product.category,
+            tag: product. tag,
+            imageName: product.imageName,
+            rating: product.rating,
+
+            text: `product with article number ${req.params.articleNumber} was updated successfully`
+        })
+        
+        
+        } else {
+            res.status(404).json({text: `product with article number ${req.params.articleNumber} can not update`})
+        }
+    }
+})
+
+
 module.exports = controller
 

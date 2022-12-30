@@ -138,6 +138,7 @@ controller.route ('/:articleNumber').put(async (req, res) => {
         if (product) {
             
             res.status(200).json({
+            // I know that we don't need to have these 8 lines below and the update works without them, I wrote them just to see the updated object in the Postman program immediately.
             articleNumber: product._id,
             name: product.name,
             description : product.description,
